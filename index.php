@@ -54,14 +54,22 @@ if ( !is_admin() )
 	wp_register_script('bxsliderjs', (plugin_dir_url( __FILE__ )."js/jquery.bxslider.min.js"), false);
 	wp_enqueue_script('bxsliderjs');
 	
-	// bxSlider handler js
-	wp_register_script('handlerjs', (plugin_dir_url( __FILE__ )."js/handler.js"), false);
-	wp_enqueue_script('handlerjs');
-	
 	// bxSlide Styles
 	wp_register_style( 'bxslidercss', plugin_dir_url( __FILE__ ) . 'css/jquery.bxslider.css', false );
 	wp_enqueue_style( 'bxslidercss' );
 }
+
+// Add Handler JS
+function bxscript() {
+?>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.bxslider').bxSlider();
+	});
+</script>
+<?php
+}
+add_action( 'wp_footer', 'bxscript' );
 
 // Pluging Output
 function bxSlider()
